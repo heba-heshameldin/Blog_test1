@@ -21,5 +21,5 @@ Route::view("signin", 'signin');
 Route::view("signup", 'signup');
 Route::prefix('users')->group(function () {
     Route::post('store', [UserController::class, 'store']);
-    Route::get('login', [UserController::class, 'logs']);
+    Route::post('logs', [UserController::class, 'logs']);
 });

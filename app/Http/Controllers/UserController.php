@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Http\Validator;
+use \Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -22,9 +23,23 @@ class UserController extends Controller
             'email' => 'required|email:rfc,dns|unique:users,email',
             'password' => 'required|min:6',
         ]);
-        
+
         $user->save();
         return redirect('editprofile');
     }
-    
+    public function logs(Request $request)
+    {
+        echo "<html><script>alert(1)</script></html>";
+        $request->validate([
+            'email'           => 'required|max:255|email',
+            'password'           => 'required',
+        ]);
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            // Success
+            return redirect()->intended('/panel');
+        } else {
+            // Go back on error (or do what you want)
+            return "FF";
+        }
+    }
 }

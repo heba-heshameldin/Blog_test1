@@ -11,7 +11,7 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <nav style="position: fixed ; width: 100%; z-index:100" class="navbar navbar-expand-sm navbar-light bg-light  ">
         <div class="container-fluid">
             <a class="navbar-brand" href="javascript:void(0)">B00T2R00T</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">

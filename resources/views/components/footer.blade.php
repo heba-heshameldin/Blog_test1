@@ -7,12 +7,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         .footer {
-            position: fixed;
-            left: 0;
-            bottom: 0;
+
+
             width: 100%;
-            background-color: rgb(15, 15, 15);
-            color: white;
+            background-color: rgb(248, 249, 250);
+            color: rgb(0, 0, 0, .55);
             text-align: center;
         }
 
@@ -23,7 +22,7 @@
 
 
     <div class="footer">
-        <p> Copyright © 2022. Made with love 🤯
+        <p style="padding: 15px 0 "> Copyright © 2022. Made with love 🤯
         </p>
     </div>
 
