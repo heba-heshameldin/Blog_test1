@@ -23,3 +23,8 @@ Route::prefix('users')->group(function () {
     Route::post('store', [UserController::class, 'store']);
     Route::post('logs', [UserController::class, 'logs']);
 });
+Route::view("post", 'post');
+Route::view("addpost", 'add');
+Route::view("commint", 'commint');
+Route::view("profile", 'profile');
+Route::view("editprofile", 'editprofile');

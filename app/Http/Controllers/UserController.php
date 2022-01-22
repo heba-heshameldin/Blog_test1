@@ -11,7 +11,6 @@ use \Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 use Illuminate\Support\Facades\Auth;
 
-
 class UserController extends Controller
 {
     public function store(Request $request)
@@ -36,10 +35,16 @@ class UserController extends Controller
         ]);
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             // Success
-            return redirect()->intended('/panel');
+            return redirect()->intended('profile');
         } else {
             // Go back on error (or do what you want)
             return "FF";
         }
     }
+    //     public function usersFavourite()
+    // {
+    //     if ( Auth::check()) {
+    //         return redirect('users/profile');
+    //     }
+    // }
 }

@@ -31,8 +31,8 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-    <div style="margin: 20px 0 " class="container ">
-        <h3>B00T2R00T</h3>
+    <div style="margin: 20px 0; text-align:center ">
+        <h3 style="color: rgb(26, 102, 245)">B00T2R00T</h3>
         <p>This site allows you to write posts and comments and find out what is going on around you.</p>
         <p>It allows you to communicate in many categories and exchange opinions, but within certain terms and
             conditions.</p>
