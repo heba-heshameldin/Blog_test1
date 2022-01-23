@@ -21,9 +21,9 @@
                             <div class="card-body text-center">
                                 <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
                                     alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-                                <h5 class="my-3">John Smith</h5>
+                                <h5 class="my-3">{{ @Auth::user()->name ?? 'No name' }}</h5>
                                 <p class="text-muted mb-1">Full Stack Developer</p>
-                                <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
+                               
 
                             </div>
                             <div class="d-flex justify-content-center mb-2">
@@ -41,16 +41,16 @@
                                         <p class="mb-0">Full Name</p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-muted mb-0">Johnatan Smith</p>
+                                        <p class="text-muted mb-0" name="name">{{ @Auth::user()->name ?? 'No name' }}</p>
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <p class="mb-0">Email</p>
+                                        <p class="mb-0" >Email</p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-muted mb-0">example@example.com</p>
+                                        <p class="text-muted mb-0"  name="email">{{ @Auth::user()->email ?? 'No email' }}</p>
                                     </div>
                                 </div>
                                 <hr>
@@ -59,16 +59,16 @@
                                         <p class="mb-0">Phone</p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-muted mb-0">(097) 234-5678</p>
+                                        <p class="text-muted mb-0" name="phone">{{ @Auth::user()->phone ?? 'No phone' }}</p>
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <p class="mb-0">Date of birth</p>
+                                        <p class="mb-0" name="dateofbirth">Date of birth</p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-muted mb-0">Jan 7, 1999</p>
+                                        <p class="text-muted mb-0"  name="dateofbirth">{{ @Auth::user()->date_of_birth ?? 'No birth date' }}</p>
                                     </div>
                                 </div>
                                 <hr>
@@ -77,7 +77,7 @@
                                         <p class="mb-0">Address</p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                                        <p class="text-muted mb-0" name="address">{{ @Auth::user()->address ?? 'No address' }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -90,8 +90,7 @@
                                         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
                                             alt="avatar" class="rounded-circle img-fluid"
                                             style="width: 50px; display: inline-block">
-                                        <span class="my-3" style="font-size: 20px; padding-left: 10px;">John
-                                            Smith</span>
+                                        <span class="my-3" style="font-size: 20px; padding-left: 10px;">{{ @Auth::user()->name ?? 'No name' }}</span>
                                         <div class="dropdown">
                                             <button class="dropbtn">Options</button>
                                             <div class="dropdown-content">

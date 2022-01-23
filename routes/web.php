@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\EditUserController;
+use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,14 +20,23 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::view("signin", 'signin');
+
+// Route::get('logout', function () {
+//     return Auth::logout();
+// });
+
+Route::view("signin", 'signin')->name('signin');
 Route::view("signup", 'signup');
 Route::prefix('users')->group(function () {
     Route::post('store', [UserController::class, 'store']);
-    Route::post('logs', [UserController::class, 'logs']);
+    Route::post('login', [UserController::class, 'login']);
+    Route::view("profile", 'profile')->middleware('auth');
+    Route::view("editprofile", 'editprofile');
+    Route::post('editprofile',[UserController::class,'update']);
+
+
 });
+Route::post('logout', [SessionController::class,'destroy']);
 Route::view("post", 'post');
 Route::view("addpost", 'add');
 Route::view("commint", 'commint');
-Route::view("profile", 'profile');
-Route::view("editprofile", 'editprofile');

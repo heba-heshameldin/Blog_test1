@@ -7,7 +7,7 @@
                         class="img-fluid" alt="Sample image">
                 </div>
                 <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                    <form class="" action="{{ URL::to('users/logs') }}" method="post">
+                    <form class="" action="{{ URL::to('users/login') }}" method="post">
 
 
                         @csrf

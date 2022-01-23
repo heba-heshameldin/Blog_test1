@@ -15,18 +15,34 @@ class UserController extends Controller
 {
     public function store(Request $request)
     {
-        $user = new User();
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
         $request->validate([
             'email' => 'required|email:rfc,dns|unique:users,email',
             'password' => 'required|min:6',
         ]);
 
+        $user = new User();
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
         $user->save();
-        return redirect('editprofile');
+        return $this->login($request);
     }
-    public function logs(Request $request)
+
+    public function update(Request $request)
+    {
+        $id = Auth::user()->id;
+        $user = User::find($id);
+        $user->name =  $request->name;
+        $user->email =  $request->email;
+        $user->phone =  $request->phone;
+        $user->date_of_birth =  $request->date_of_birth;
+        $user->address =  $request->address;
+        $user->save();
+        return redirect()->intended('users/profile');
+     
+
+    }
+
+    public function login(Request $request)
     {
         echo "<html><script>alert(1)</script></html>";
         $request->validate([
@@ -35,16 +51,17 @@ class UserController extends Controller
         ]);
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             // Success
-            return redirect()->intended('profile');
+            return redirect()->intended('users/profile');
         } else {
             // Go back on error (or do what you want)
             return "FF";
         }
     }
-    //     public function usersFavourite()
-    // {
-    //     if ( Auth::check()) {
-    //         return redirect('users/profile');
-    //     }
-    // }
+
+    
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect('/signin');
+    }
 }

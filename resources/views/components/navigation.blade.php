@@ -27,12 +27,37 @@
                     </li>
 
                 </ul>
-                <form class="d-flex">
-                    <a href="signin"> <button class="btn btn-primary" type="button" style="margin:5px;"
-                            action="signin.html">Sign in</button></a>
-                    <a href="signup"> <button class="btn btn-primary" type="button" style="margin:5px;"
-                            action="signup.html">Sign up</button></a>
-                </form>
+
+                <ul class="nav navbar-nav navbar-right">
+                    @if (Auth::check())
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="profile" id="navbarDarkDropdownMenuLink"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                My account
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                <li><a class="dropdown-item" href="{{URL::to('users/editprofile')}}">Edit Profile </a></li>
+
+                                <li>
+                                    <form method="POST" action="/logout" class="dropdown-item">
+                                        @csrf
+                                        <button type="submit" style="background-color:rgb(52, 58, 64); color:rgb(222, 226, 230); outline: none;">logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+
+                        @else
+
+                            <form class="d-flex">
+                                <a href="signin"> <button class="btn btn-primary" type="button" style="margin:5px;"
+                                        action="signin.html">Sign in</button></a>
+                                <a href="signup"> <button class="btn btn-primary" type="button" style="margin:5px;"
+                                        action="signup.html">Sign up</button></a>
+                            </form>
+
+                    @endif
+
+                </ul>
             </div>
         </div>
     </nav>
