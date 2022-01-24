@@ -23,7 +23,7 @@
                                     alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                                 <h5 class="my-3">{{ @Auth::user()->name ?? 'No name' }}</h5>
                                 <p class="text-muted mb-1">Full Stack Developer</p>
-                               
+
 
                             </div>
                             <div class="d-flex justify-content-center mb-2">
@@ -41,16 +41,18 @@
                                         <p class="mb-0">Full Name</p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-muted mb-0" name="name">{{ @Auth::user()->name ?? 'No name' }}</p>
+                                        <p class="text-muted mb-0" name="name">{{ @Auth::user()->name ?? 'No name' }}
+                                        </p>
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <p class="mb-0" >Email</p>
+                                        <p class="mb-0">Email</p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-muted mb-0"  name="email">{{ @Auth::user()->email ?? 'No email' }}</p>
+                                        <p class="text-muted mb-0" name="email">
+                                            {{ @Auth::user()->email ?? 'No email' }}</p>
                                     </div>
                                 </div>
                                 <hr>
@@ -59,7 +61,8 @@
                                         <p class="mb-0">Phone</p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-muted mb-0" name="phone">{{ @Auth::user()->phone ?? 'No phone' }}</p>
+                                        <p class="text-muted mb-0" name="phone">
+                                            {{ @Auth::user()->phone ?? 'No phone' }}</p>
                                     </div>
                                 </div>
                                 <hr>
@@ -68,7 +71,8 @@
                                         <p class="mb-0" name="dateofbirth">Date of birth</p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-muted mb-0"  name="dateofbirth">{{ @Auth::user()->date_of_birth ?? 'No birth date' }}</p>
+                                        <p class="text-muted mb-0" name="dateofbirth">
+                                            {{ @Auth::user()->date_of_birth ?? 'No birth date' }}</p>
                                     </div>
                                 </div>
                                 <hr>
@@ -77,7 +81,8 @@
                                         <p class="mb-0">Address</p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-muted mb-0" name="address">{{ @Auth::user()->address ?? 'No address' }}</p>
+                                        <p class="text-muted mb-0" name="address">
+                                            {{ @Auth::user()->address ?? 'No address' }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -90,7 +95,8 @@
                                         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
                                             alt="avatar" class="rounded-circle img-fluid"
                                             style="width: 50px; display: inline-block">
-                                        <span class="my-3" style="font-size: 20px; padding-left: 10px;">{{ @Auth::user()->name ?? 'No name' }}</span>
+                                        <span class="my-3"
+                                            style="font-size: 20px; padding-left: 10px;">{{ @Auth::user()->name ?? 'No name' }}</span>
                                         <div class="dropdown">
                                             <button class="dropbtn">Options</button>
                                             <div class="dropdown-content">

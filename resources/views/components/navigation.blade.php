@@ -36,12 +36,14 @@
                                 My account
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                <li><a class="dropdown-item" href="{{URL::to('users/editprofile')}}">Edit Profile </a></li>
+                                <li><a class="dropdown-item" href="{{ URL::to('users/editprofile') }}">Edit Profile
+                                    </a></li>
 
                                 <li>
                                     <form method="POST" action="/logout" class="dropdown-item">
                                         @csrf
-                                        <button type="submit" style="background-color:rgb(52, 58, 64); color:rgb(222, 226, 230); outline: none;">logout</button>
+                                        <button type="submit"
+                                            style="background-color:rgb(52, 58, 64); color:rgb(222, 226, 230); outline: none;">logout</button>
                                     </form>
                                 </li>
                             </ul>

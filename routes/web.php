@@ -32,11 +32,9 @@ Route::prefix('users')->group(function () {
     Route::post('login', [UserController::class, 'login']);
     Route::view("profile", 'profile')->middleware('auth');
     Route::view("editprofile", 'editprofile');
-    Route::post('editprofile',[UserController::class,'update']);
-
-
+    Route::post('editprofile', [UserController::class, 'update']);
 });
-Route::post('logout', [SessionController::class,'destroy']);
+Route::post('logout', [SessionController::class, 'destroy']);
 Route::view("post", 'post');
 Route::view("addpost", 'add');
 Route::view("commint", 'commint');

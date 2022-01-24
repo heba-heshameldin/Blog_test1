@@ -38,8 +38,6 @@ class UserController extends Controller
         $user->address =  $request->address;
         $user->save();
         return redirect()->intended('users/profile');
-     
-
     }
 
     public function login(Request $request)
@@ -58,7 +56,7 @@ class UserController extends Controller
         }
     }
 
-    
+
     public function logout(Request $request)
     {
         Auth::logout();
