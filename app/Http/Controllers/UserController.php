@@ -42,7 +42,7 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
-        echo "<html><script>alert(1)</script></html>";
+        // echo "<html><script>alert(1)</script></html>";
         $request->validate([
             'email'           => 'required|max:255|email',
             'password'           => 'required',
@@ -52,7 +52,7 @@ class UserController extends Controller
             return redirect()->intended('users/profile');
         } else {
             // Go back on error (or do what you want)
-            return "FF";
+            return "This account does not exist";
         }
     }
 
