@@ -36,5 +36,5 @@ Route::prefix('users')->group(function () {
 });
 Route::post('logout', [SessionController::class, 'destroy']);
 Route::view("post", 'post');
-Route::view("addpost", 'add');
+Route::view("createpost", 'createpost');
 Route::view("commint", 'commint');

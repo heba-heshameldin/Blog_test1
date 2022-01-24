@@ -1,6 +1,6 @@
 <x-layout>
 
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="margin-top: 40px">
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="margin-top: 10px">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
                 aria-current="true" aria-label="Slide 1"></button>
@@ -11,13 +11,13 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="./assets/img/ctf1.jpg" class="d-block w-100  " style="height: 450px" alt="...">
+                <img src="./assets/img/ctf1.jpg" class="d-block w-100  " style="height: 550px" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="./assets/img/ctf2.jpg" class="d-block w-100 " style="height: 450px" alt="...">
+                <img src="./assets/img/ctf2.jpg" class="d-block w-100 " style="height: 550px" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="./assets/img/ctf3.jpg" class="d-block w-100 " style="height: 450px" alt="...">
+                <img src="./assets/img/ctf3.jpg" class="d-block w-100 " style="height: 550px" alt="...">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
