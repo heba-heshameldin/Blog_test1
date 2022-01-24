@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Http\Validator;
 use \Illuminate\Foundation\Auth\AuthenticatesUsers;
-
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -27,6 +26,7 @@ class UserController extends Controller
         return $this->login($request);
     }
 
+
     public function update(Request $request)
     {
         $id = Auth::user()->id;
@@ -39,6 +39,8 @@ class UserController extends Controller
         $user->save();
         return redirect()->intended('users/profile');
     }
+
+    
 
     public function login(Request $request)
     {

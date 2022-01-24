@@ -1,5 +1,5 @@
 <x-layout>
-
+  
 
     <body>
         <div class="container rounded bg-white mt-5 mb-5">
@@ -16,7 +16,7 @@
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h4 class="text-right">Profile Settings</h4>
                         </div>
-                        <form class="" action="{{ URL::to('users/editprofile') }}" method="post">
+                        <form class="" action="{{ URL::to('editprofile') }}" method="post">
                             @csrf
                             <div class="row mt-3">
                                 <div class="col-md-12"><label class="labels">Full Name</label><input
@@ -48,5 +48,5 @@
         </div>
         </div>
 
-
+   
 </x-layout>

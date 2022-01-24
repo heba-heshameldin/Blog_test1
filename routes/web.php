@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CreatePostController;
 use App\Http\Controllers\EditUserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserController;
@@ -31,10 +32,22 @@ Route::prefix('users')->group(function () {
     Route::post('store', [UserController::class, 'store']);
     Route::post('login', [UserController::class, 'login']);
     Route::view("profile", 'profile')->middleware('auth');
-    Route::view("editprofile", 'editprofile');
-    Route::post('editprofile', [UserController::class, 'update']);
 });
-Route::post('logout', [SessionController::class, 'destroy']);
+
 Route::view("post", 'post');
-Route::view("createpost", 'createpost');
 Route::view("commint", 'commint');
+
+Route::view("viewpost", 'viewpost');
+
+Route::middleware(['auth'])->group(function () {
+    Route::post('editprofile', [UserController::class, 'update']);
+    Route::view("editprofile", 'editprofile');
+    Route::post('createpost', [CreatePostController::class, 'store']);
+    Route::view("createpost", 'createpost');
+
+
+
+    Route::post('logout', [SessionController::class, 'destroy']);
+
+    //
+});
