@@ -1,22 +1,16 @@
 <x-layout>
     <div class="page" style="margin-top:40px; margin-left:40px; margin-right:40px">
-        <select class="mdb-select md-form" style="margin: 30px;  width:250px; height:35px;" searchable="Search here..">
-            <option value="" disabled selected>Choose categories</option>
-            <option value="1">Basics of cyber security</option>
-            <option value="2">Network Pentester</option>
-            <option value="3">Web Application Pentester</option>
-            <option value="3">Advanced Pentester</option>
-            <option value="3">Purple Team Member</option>
-        </select>
+        @include('components.categories')
+
         <button type="button" class="btn btn-primary"
             style="margin-bottom: 20px ;  margin-top:17px; position:relative:right"><a href="createpost"
                 style="color: white; text-decoration: none ; "> ➕ Add new post</a></button>
         <!--For Row containing all card-->
-        <div class="row" style="width: 1450px ;">
+        <div class="row" style="width: 1450px ; height:100px ">
             <!--Card 1-->
             <div class="col-sm">
-                <div class="card card-cascade card-ecommerce wider shadow mb-5 ">
-                    <!--Card image-->
+                <!--Card image-->
+                <div class="card card-cascade card-ecommerce wider shadow mb-5  ">
                     <div class="view view-cascade overlay text-center"> <img class="card-img-top"
                             src="https://elearnsecurity.com/wp-content/uploads/eJPT-200x149.png" alt="">
                         <a>

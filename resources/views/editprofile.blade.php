@@ -1,5 +1,5 @@
 <x-layout>
-  
+
 
     <body>
         <div class="container rounded bg-white mt-5 mb-5">
@@ -48,5 +48,5 @@
         </div>
         </div>
 
-   
+
 </x-layout>

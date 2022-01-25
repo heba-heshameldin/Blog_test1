@@ -13,7 +13,9 @@ class CreatePostController extends Controller
 
     public function index()
     {
+    
         $catagories = Catagory::get();
+       
 
         return view('createpost', compact('catagories'));
     }
@@ -21,12 +23,10 @@ class CreatePostController extends Controller
     public function store(Request $request)
     {
         $post = new Post();
-
+        $post->user_id = Auth::user()->id;
         $post->title =  $request->title;
         $post->description =  $request->description;
-        $post->category_title =  $request->category_title;
-        $post->thumbnail =  $request->thumbnail;
-        $post->user_id = Auth::user()->id;
+        $post->title =  $request->title;
 
         $post->save();
         return redirect()->intended('post');
