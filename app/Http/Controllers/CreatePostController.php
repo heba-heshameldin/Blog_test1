@@ -6,8 +6,18 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 
+use App\Models\Catagory;
+
 class CreatePostController extends Controller
 {
+
+    public function index()
+    {
+        $catagories = Catagory::get();
+
+        return view('createpost', compact('catagories'));
+    }
+
     public function store(Request $request)
     {
         $post = new Post();

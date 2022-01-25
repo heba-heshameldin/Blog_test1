@@ -1,7 +1,7 @@
 <x-layout>
 
     <h1 style="margin-top: 50px;text-align: center;color:rgb(25, 140, 218)">Create Post</h1>
-    <form class="row g-3" style="margin: 70px;margin-left:350px " action="{{ URL::to('p') }}" method="post">
+    <form class="row g-3" style="margin: 70px;margin-left:350px " action="{{ URL::to('post') }}" method="post">
         @csrf
 
 
@@ -14,12 +14,10 @@
             <label for="inputCategoryTitle4" class="form-label" style="color:rgb(25, 140, 218);">Category
                 Title</label>
             <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style="margin-top:5px">
-                <option selected>Choose categories</option>
-                <option value="1">Basics of cyber security</option>
-                <option value="2">Network Pentester</option>
-                <option value="3">Web Application Pentester</option>
-                <option value="3">Advanced Pentester</option>
-                <option value="3">Purple Team Member</option>
+                <option selected disabled>Choose categories</option>
+                @foreach ($catagories as $cat)
+                    <option value="{{ $cat->id }}">{{ $cat->title }}</option>
+                @endforeach
             </select>
         </div>
 

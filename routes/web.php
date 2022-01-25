@@ -26,6 +26,9 @@ Route::get('/', function () {
 //     return Auth::logout();
 // });
 
+
+Route::view("post", 'post')->name('posts.show');
+
 Route::view("signin", 'signin')->name('signin');
 Route::view("signup", 'signup');
 Route::prefix('users')->group(function () {
@@ -34,7 +37,6 @@ Route::prefix('users')->group(function () {
     Route::view("profile", 'profile')->middleware('auth');
 });
 
-Route::view("post", 'post');
 Route::view("commint", 'commint');
 
 Route::view("viewpost", 'viewpost');
@@ -42,8 +44,10 @@ Route::view("viewpost", 'viewpost');
 Route::middleware(['auth'])->group(function () {
     Route::post('editprofile', [UserController::class, 'update']);
     Route::view("editprofile", 'editprofile');
-    Route::post('createpost', [CreatePostController::class, 'store']);
-    Route::view("createpost", 'createpost');
+    Route::post('createpost', [CreatePostController::class, 'store'])->name('posts.create');
+    Route::get('createpost', [CreatePostController::class, 'index'])->name('posts.index');
+
+    // Route::view("createpost", 'createpost');
 
 
 

@@ -41,8 +41,8 @@
 
                         <!--Card footer-->
                         <div>
-                            <button type="button" class="btn btn-primary" style="margin-bottom: 20px"><a
-                                    href="viewpost" style="color: white; text-decoration: none">View</a></button>
+                            <button type="button" class="btn btn-primary" style="margin-bottom: 20px"><a href="viewpost"
+                                    style="color: white; text-decoration: none">View</a></button>
                             <button type="button" class="btn btn-primary" style="margin-bottom: 20px"><a
                                     href="editprofile" style="color: white; text-decoration: none">Edit</a></button>
                             <button type="button" class="btn btn-primary" style="margin-bottom: 20px"><a

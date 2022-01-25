@@ -1,4 +1,5 @@
-<nav style="position: fixed ; width: 100%; height:fit-content; z-index:100" class="navbar navbar-expand-sm navbar-light bg-light  ">
+<nav style="position: fixed ; width: 100%; height:fit-content; z-index:100"
+    class="navbar navbar-expand-sm navbar-light bg-light  ">
     <div class="container-fluid">
         <a class="navbar-brand" href="javascript:void(0)">B00T2R00T</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
@@ -10,7 +11,8 @@
                     <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="post">Posts</a>
+                    <a class="nav-link" href="{{ route('posts.show') }}
+                    ">Posts</a>
                 </li>
 
             </ul>

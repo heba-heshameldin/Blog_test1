@@ -11,8 +11,8 @@
                             class="profile-photo-md pull-left">
                         <div class="post-detail">
                             <div class="user-info">
-                                <h5><a href="timeline.html" class="profile-link">Alexis Clark</a> 
-                                <p class="text-muted">Published a photo about 3 mins ago</p>
+                                <h5><a href="timeline.html" class="profile-link">Alexis Clark</a>
+                                    <p class="text-muted">Published a photo about 3 mins ago</p>
                             </div>
 
                             <div class="line-divider"></div>
