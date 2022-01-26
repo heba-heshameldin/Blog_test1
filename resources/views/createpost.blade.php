@@ -13,8 +13,9 @@
         <div class="col-md-4">
             <label for="inputCategoryTitle4" class="form-label" style="color:rgb(25, 140, 218);">Category
                 Title</label>
-                @include('components.categories')
-            </div>
+            <x-categories />
+
+        </div>
 
         <div class="col-8">
             <label for="inputDescription2" class="form-label" style="color:rgb(25, 140, 218);">Description</label>
