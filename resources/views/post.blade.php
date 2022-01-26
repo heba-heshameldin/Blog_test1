@@ -1,6 +1,6 @@
 <x-layout>
     <div class="page" style="margin-top:40px; margin-left:40px; margin-right:40px">
-        @include('components.categories')
+        <x-categories />
 
         <button type="button" class="btn btn-primary"
             style="margin-bottom: 20px ;  margin-top:17px; position:relative:right"><a href="createpost"

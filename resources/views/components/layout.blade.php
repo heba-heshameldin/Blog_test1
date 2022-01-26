@@ -16,7 +16,6 @@
 <body>
     @include('components.navigation')
     {{ $slot }}
-    @include('components.categories')
 
     {{-- {{Auth::check()? "signin" : "not siug"}} --}}
     @include('components.footer')

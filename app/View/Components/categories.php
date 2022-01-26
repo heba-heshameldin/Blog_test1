@@ -2,10 +2,14 @@
 
 namespace App\View\Components;
 
+use App\Models\Category;
 use Illuminate\View\Component;
 
-class categories extends Component
+class Categories extends Component
 {
+
+    public $categories;
+
     /**
      * Create a new component instance.
      *
@@ -13,7 +17,7 @@ class categories extends Component
      */
     public function __construct()
     {
-        //
+        $this->categories = Category::get();
     }
 
     /**

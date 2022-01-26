@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\Catagory;
+use App\Models\Category;
 
 class CreatePostController extends Controller
 {
@@ -14,7 +14,7 @@ class CreatePostController extends Controller
     public function index()
     {
     
-        $catagories = Catagory::get();
+        $catagories = Category::get();
        
 
         return view('createpost', compact('catagories'));
