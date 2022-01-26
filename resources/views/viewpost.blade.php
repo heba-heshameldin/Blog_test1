@@ -4,28 +4,25 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="post-content">
-                    <img src="https://via.placeholder.com/400x150/FFB6C1/000000" alt="post-image"
+                    <img src="{{ URL::asset('assets/img') . '/' . $post->thumbnail }}" alt="post-image"
                         class="img-responsive post-image">
                     <div class="post-container">
                         <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="user"
                             class="profile-photo-md pull-left">
                         <div class="post-detail">
                             <div class="user-info">
-                                <h5><a href="timeline.html" class="profile-link">Alexis Clark</a>
-                                    <p class="text-muted">Published a photo about 3 mins ago</p>
+                                <h5><a href="timeline.html" class="profile-link">{{ App\Models\User::find($post->user_id)->name }}</a>
+                                    <p class="text-muted">Published in {{ $post->created_at }}</p>
                             </div>
-
+                            <hr>
                             <div class="line-divider"></div>
                             <div class="post-text">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                                    deserunt mollit anim id est laborum. <i class="em em-anguished"></i> <i
+                                <b>Title:</b> {{ $post->title }}<br><hr>
+                                <p><b>Body: </b>{{ $post->description }} <i class="em em-anguished"></i> <i
                                         class="em em-anguished"></i> <i class="em em-anguished"></i></p>
                             </div>
                             <div class="line-divider"></div>
+                            <hr><b>Comments: </b><br>
                             <div class="post-comment">
                                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt=""
                                     class="profile-photo-sm">

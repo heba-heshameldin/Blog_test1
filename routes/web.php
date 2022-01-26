@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\CreatePostController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\EditUserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserController;
@@ -27,8 +27,6 @@ Route::get('/', function () {
 // });
 
 
-Route::view("post", 'post')->name('posts.show');
-
 Route::view("signin", 'signin')->name('signin');
 Route::view("signup", 'signup');
 Route::prefix('users')->group(function () {
@@ -37,21 +35,17 @@ Route::prefix('users')->group(function () {
     Route::view("profile", 'profile')->middleware('auth');
 });
 
-Route::view("commint", 'commint');
-
-Route::view("viewpost", 'viewpost');
+Route::get('posts', [PostController::class, 'index'])->name('posts.show');
 
 Route::middleware(['auth'])->group(function () {
+    Route::prefix('posts')->group(function () {
+    Route::post('category', [PostController::class, 'category'])->name('posts.category');
+    Route::get('view/{id}', [PostController::class, 'view'])->name('posts.view');
+    Route::post('create', [PostController::class, 'store'])->name('posts.store');
+    Route::get('create', [PostController::class, 'create'])->name('posts.create');
+}); 
     Route::post('editprofile', [UserController::class, 'update']);
     Route::view("editprofile", 'editprofile');
-    Route::post('createpost', [CreatePostController::class, 'store'])->name('posts.create');
-    Route::get('createpost', [CreatePostController::class, 'index'])->name('posts.index');
-
-    // Route::view("createpost", 'createpost');
-
-
-
     Route::post('logout', [SessionController::class, 'destroy']);
-
     //
 });

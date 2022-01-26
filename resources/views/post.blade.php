@@ -1,18 +1,29 @@
 <x-layout>
     <div class="page" style="margin-top:40px; margin-left:40px; margin-right:40px">
-        <x-categories />
+        
+        <form action="{{ URL::to('posts/category') }}" method="POST">
+            @csrf
+        <select onchange="this.form.submit()" name="category" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style="margin-top:5px">
+            <option selected disabled>Choose categories</option>
+            @foreach ($catagories as $category)
+                <option value="{{ $category->id }}">{{ $category->title }}</option>
+            @endforeach
+        </select>
+    </form>
 
         <button type="button" class="btn btn-primary"
-            style="margin-bottom: 20px ;  margin-top:17px; position:relative:right"><a href="createpost"
+            style="margin-bottom: 20px ;  margin-top:17px; position:relative:right"><a href="/createpost"
                 style="color: white; text-decoration: none ; "> ➕ Add new post</a></button>
         <!--For Row containing all card-->
         <div class="row" style="width: 1450px ; height:100px ">
-            <!--Card 1-->
+            
+            @foreach ($posts as $post)
+
             <div class="col-sm">
                 <!--Card image-->
                 <div class="card card-cascade card-ecommerce wider shadow mb-5  ">
                     <div class="view view-cascade overlay text-center"> <img class="card-img-top"
-                            src="https://elearnsecurity.com/wp-content/uploads/eJPT-200x149.png" alt="">
+                            src="{{ URL::asset('assets/img') . '/' . $post->thumbnail }}" alt="">
                         <a>
                             <div class="mask rgba-white-slight"></div>
                         </a>
@@ -20,105 +31,29 @@
                     <!--Card Body-->
                     <div class="card-body card-body-cascade">
                         <!--Card Title-->
-                        <h4 class="card-title"><strong><a href="">eJPT</a></strong></h4>
+                        <h4 class="card-title"><strong><a href="">{{ $post->title }}</a></strong></h4>
                         <!-- Card Description-->
-                        <p class="card-text">The eLearnSecurity Junior Penetration Tester (eJPT) is a 100%
-                            practical certification on penetration testing and information security essentials. By
-                            passing the exam, a cyber security professional proves to employers they are ready for a
-                            rewarding new career. </p>
+                        <p class="card-text">{{ $post->description }}</p>
                         <h6 style="display: inline-block">Cateogry Title: </h6>
-                        <span>Basic </span>
+                        <span>{{ App\Models\Category::find($post->category_id)->title }}</span>
                         <br>
                         <h6 style="display: inline-block">User Name :</h6>
-                        <span>hattan </span>
+                        <span>{{ App\Models\User::find($post->user_id)->name }}</span>
 
 
                         <!--Card footer-->
                         <div>
-                            <button type="button" class="btn btn-primary" style="margin-bottom: 20px"><a href="viewpost"
+                            <button type="button" class="btn btn-primary" style="margin-bottom: 20px"><a href="/posts/view/{{$post->id}}"
                                     style="color: white; text-decoration: none">View</a></button>
                             <button type="button" class="btn btn-primary" style="margin-bottom: 20px"><a
-                                    href="editprofile" style="color: white; text-decoration: none">Edit</a></button>
+                                    href="/posts/edit/{{$post->id}}" style="color: white; text-decoration: none">Edit</a></button>
                             <button type="button" class="btn btn-primary" style="margin-bottom: 20px"><a
-                                    href="editprofile" style="color: white; text-decoration: none">Delete</a></button>
+                                    href="/posts/delete/{{$post->id}}" style="color: white; text-decoration: none">Delete</a></button>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--Card 2-->
-            <div class="col-sm">
-                <div class="card card-cascade card-ecommerce wider shadow mb-5 ">
-                    <!--Card image-->
-                    <div class="view view-cascade overlay text-center"> <img class="card-img-top"
-                            src="https://elearnsecurity.com/wp-content/uploads/eJPT-200x149.png" alt="">
-                        <a>
-                            <div class="mask rgba-white-slight"></div>
-                        </a>
-                    </div>
-                    <!--Card Body-->
-                    <div class="card-body card-body-cascade">
-                        <!--Card Title-->
-                        <h4 class="card-title"><strong><a href="">eJPT</a></strong></h4>
-                        <!-- Card Description-->
-                        <p class="card-text">The eLearnSecurity Junior Penetration Tester (eJPT) is a 100%
-                            practical certification on penetration testing and information security essentials. By
-                            passing the exam, a cyber security professional proves to employers they are ready for a
-                            rewarding new career. </p>
-                        <h6 style="display: inline-block">Cateogry Title: </h6>
-                        <span>Basic </span>
-                        <br>
-                        <h6 style="display: inline-block">User Name :</h6>
-                        <span>hattan </span>
-
-                        <!--Card footer-->
-                        <div>
-                            <button type="button" class="btn btn-primary" style="margin-bottom: 20px"><a
-                                    href="editprofile" style="color: white; text-decoration: none">View</a></button>
-                            <button type="button" class="btn btn-primary" style="margin-bottom: 20px"><a
-                                    href="editprofile" style="color: white; text-decoration: none">Edit</a></button>
-                            <button type="button" class="btn btn-primary" style="margin-bottom: 20px"><a
-                                    href="editprofile" style="color: white; text-decoration: none">Delete</a></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--Card 2-->
-            <div class="col-sm">
-                <div class="card card-cascade card-ecommerce wider shadow mb-5 ">
-                    <!--Card image-->
-                    <div class="view view-cascade overlay text-center"> <img class="card-img-top"
-                            src="https://elearnsecurity.com/wp-content/uploads/eJPT-200x149.png" alt="">
-                        <a>
-                            <div class="mask rgba-white-slight"></div>
-                        </a>
-                    </div>
-                    <!--Card Body-->
-                    <div class="card-body card-body-cascade">
-                        <!--Card Title-->
-                        <h4 class="card-title"><strong><a href="">eJPT</a></strong></h4>
-                        <!-- Card Description-->
-                        <p class="card-text">The eLearnSecurity Junior Penetration Tester (eJPT) is a 100%
-                            practical certification on penetration testing and information security essentials. By
-                            passing the exam, a cyber security professional proves to employers they are ready for a
-                            rewarding new career. </p>
-                        <h6 style="display: inline-block">Cateogry Title: </h6>
-                        <span>Basic </span>
-                        <br>
-                        <h6 style="display: inline-block">User Name :</h6>
-                        <span>hattan </span>
-
-
-                        <div>
-                            <button type="button" class="btn btn-primary" style="margin-bottom: 20px"><a
-                                    href="editprofile" style="color: white; text-decoration: none">View</a></button>
-                            <button type="button" class="btn btn-primary" style="margin-bottom: 20px"><a
-                                    href="editprofile" style="color: white; text-decoration: none">Edit</a></button>
-                            <button type="button" class="btn btn-primary" style="margin-bottom: 20px"><a
-                                    href="editprofile" style="color: white; text-decoration: none">Delete</a></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 
