@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\EditUserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -30,22 +29,27 @@ Route::get('/', function () {
 Route::view("signin", 'signin')->name('signin');
 Route::view("signup", 'signup');
 Route::prefix('users')->group(function () {
+    Route::get('profile', [UserController::class, 'profile'])->name('user.profile')->middleware('auth');
+    Route::get('edit', [UserController::class, 'editprofile'])->name('user.editprofile')->middleware('auth');
+    Route::post('edit', [UserController::class, 'update'])->name('user.update')->middleware('auth');
     Route::post('store', [UserController::class, 'store']);
     Route::post('login', [UserController::class, 'login']);
-    Route::view("profile", 'profile')->middleware('auth');
 });
 
 Route::get('posts', [PostController::class, 'index'])->name('posts.show');
 
 Route::middleware(['auth'])->group(function () {
     Route::prefix('posts')->group(function () {
-    Route::post('category', [PostController::class, 'category'])->name('posts.category');
+    Route::get('category/{title}', [PostController::class, 'category'])->name('posts.category');
     Route::get('view/{id}', [PostController::class, 'view'])->name('posts.view');
-    Route::post('create', [PostController::class, 'store'])->name('posts.store');
+    Route::post('create', [PostController::class, 'store']);
     Route::get('create', [PostController::class, 'create'])->name('posts.create');
+    Route::post('update/{id}', [PostController::class, 'update'])->name('posts.update');
+    Route::get('edit/{id}', [PostController::class, 'edit'])->name('posts.edit');
+    Route::get('delete/{id}', [PostController::class, 'delete'])->name('posts.delete');
+
 }); 
-    Route::post('editprofile', [UserController::class, 'update']);
-    Route::view("editprofile", 'editprofile');
+   
     Route::post('logout', [SessionController::class, 'destroy']);
     //
 });

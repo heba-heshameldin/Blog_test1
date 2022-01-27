@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/viewpost.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <title>B00T2R00T</title>
 </head>
 

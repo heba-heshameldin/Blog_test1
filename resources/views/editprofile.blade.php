@@ -16,7 +16,7 @@
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h4 class="text-right">Profile Settings</h4>
                         </div>
-                        <form class="" action="{{ URL::to('editprofile') }}" method="post">
+                        <form class="" action="{{ URL::to('users/edit') }}" method="post">
                             @csrf
                             <div class="row mt-3">
                                 <div class="col-md-12"><label class="labels">Full Name</label><input
@@ -36,7 +36,7 @@
                                         type="text" class="form-control" name="address"
                                         value="{{ @Auth::user()->address ?? 'No address' }}"></div>
                             </div>
-                            <div class="mt-5 text-center"><button class="btn btn-primary profile-button"
+                            <div class="mt-5 text-center"><button class="btn btn-primary profile-button" href="/profile"
                                     type="submit"><a style="color: white; text-decoration: none">Save
                                         Profile</a></button>
                             </div>

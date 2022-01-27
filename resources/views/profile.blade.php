@@ -16,8 +16,8 @@
 
                         </div>
                         <div class="d-flex justify-content-center mb-2">
-                            <button type="button" class="btn btn-primary" style="margin-bottom: 20px"><a
-                                    href="editprofile" style="color: white; text-decoration: none">Edit
+                            <button type="button" class="btn btn-primary" style="margin-bottom: 20px"><a href="edit"
+                                    style="color: white; text-decoration: none">Edit
                                     Profile</a></button>
                         </div>
                     </div>
@@ -76,41 +76,39 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card mb-4 mb-md-0">
-                                <div class="card-body">
-                                    <h3 class="mb-4">Posts</h3>
-                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
-                                        alt="avatar" class="rounded-circle img-fluid"
-                                        style="width: 50px; display: inline-block">
-                                    <span class="my-3"
-                                        style="font-size: 20px; padding-left: 10px;">{{ @Auth::user()->name ?? 'No name' }}</span>
-                                    <!-- Example single danger button -->
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary dropdown-toggle"
-                                            data-bs-toggle="dropdown" aria-expanded="false">
-                                            ⚙️
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">Edit</a></li>
-                                            <li><a class="dropdown-item" href="#">Delete</a></li>
-
-
-                                        </ul>
+                    @foreach ($posts as $post)
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card mb-4 mb-md-0">
+                                    <div class="card-body">
+                                        <h3 class="mb-4">{{ $post->title }}</h3>
+                                        <img src="{{ URL::to('/storage/posts') . '/' . $post->thumbnail }}"
+                                            alt="avatar" class="rounded img-fluid"
+                                            style="width: 300px; ">
+                                        <div class="btn-group" style="margin-left: 450px ;">
+                                            <button type="button" class="btn  dropdown-toggle" data-bs-toggle="dropdown"
+                                                aria-expanded="false" style="margin-top: 0px">
+                                                ⚙️
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item"
+                                                        href="/posts/view/{{ $post->id }}">view</a></li>
+                                                <li><a class="dropdown-item"
+                                                        href="/posts/edit/{{ $post->id }}">Edit</a></li>
+                                                <li><a class="dropdown-item"
+                                                        href="/posts/delete/{{ $post->id }}">Delete</a></li>
+                                            </ul>
+                                        </div>
                                     </div>
+                                    <p class="mb-4"
+                                        style="font-size: 18px; margin-top: 2px; margin-left: 10px; padding-left: 3%">
+                                        {{ $post->description }}
+                                    </p>
+                                    <br>
                                 </div>
-                                <p class="mb-1" style="font-size: 18px; margin-top: 20px; padding-left: 8%">
-                                    Lorem ipsum
-                                    dolor sit amet
-                                    consectetur adipisicing elit. Fugiat tempora quisquam illo vitae expedita
-                                    eaque
-                                    harum odit, error consequuntur quas fuga illum velit, reprehenderit numquam,
-                                    repellendus dolorum exercitationem eum totam.
-                                </p>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

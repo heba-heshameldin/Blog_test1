@@ -25,7 +25,9 @@
                             My account
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                            <li><a class="dropdown-item" href="{{ URL::to('editprofile') }}">Edit Profile
+                            <li><a class="dropdown-item" href="{{ URL::to('users/profile') }}">MyProfile
+                                </a></li>
+                            <li><a class="dropdown-item" href="edit">Edit Profile
                                 </a></li>
 
                             <li>

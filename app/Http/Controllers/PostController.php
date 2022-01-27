@@ -16,28 +16,35 @@ class PostController extends Controller
     {
         $catagories = Category::get();
         $posts = Post::get(); // all posts
-        return view('post', compact('catagories','posts'));
+        return view('posts.index', compact('catagories','posts'));
     }
 
-    public function category(Request $request)
+
+    public function category($title)
     {
         $catagories = Category::get();
-        $posts = Post::where('category_id',$request->category)->get(); // all posts per category
-        return view('post', compact('catagories','posts'));
+        $category_id = Category::where('title', $title)->first()->id;
+        $posts = Post::where('category_id',$category_id)->get(); // all posts per category
+        return view('posts.index', compact('catagories','posts'));
     }
+
 
     public function view($id)
     {
-        $post = Post::where('id',$id)->first(); // all posts per category
-        return view('viewpost', compact('post'));
+        $post = Post::where('id',$id)->first(); 
+        return view('posts.view', compact('post'));
 
     }
+
+
 
     public function create()
     {
         $catagories = Category::get();
-        return view('createpost', compact('catagories'));
+        return view('posts.create', compact('catagories'));
     }
+    
+
 
     public function store(Request $request)
     {
@@ -54,10 +61,56 @@ class PostController extends Controller
         $post->title =  $request->title;
         $post->description =  $request->description;
         $imageName = time().'.'.$request->img->extension();  
-        if($request->img->move(public_path('assets\img'), $imageName)){
-            $post->thumbnail =  $imageName;
+        if($request->img->move(public_path('storage/posts'), $imageName)){ 
+            $post->thumbnail =  $imageName; 
             $post->save(); 
         }
         return redirect()->intended('post');
+    }
+    
+
+    public function edit($id)
+    {
+        $post = Post::find($id); // all posts per category
+        $catagories = Category::all();
+        return view('posts.edit', compact('post','catagories'));
+    }
+    // $catagories = Category::find($id);
+    // return view('posts.edit', compact('catagories'));
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'category' => 'required',
+            'title' => 'required',
+            'description' => 'required',
+            
+        ]);
+        $post = Post::where('id', $request->id)->first(); 
+        $post->user_id = Auth::user()->id;
+        $post->category_id = $request->category;
+        $post->title =  $request->title;
+        $post->description =  $request->description;
+        $imageName = $post->thumbnail;  // take old photo
+        if(!empty($request->img)){ // if no uploaded photo, keep the old one
+        $request->img->move(public_path('storage/posts'), $imageName);
+        }
+        $post->save(); 
+        return redirect()->intended('posts');
+    }
+
+
+    public function delete($id)
+    {
+        $post = Post::find($id);
+        @unlink(public_path($post->thumbnail));
+        if ($post != null) {
+        $post->delete();
+        return redirect()->route->intended('posts')->with('success', 'posts Updated Successfully!');
+    }
+
+    return redirect()->route('posts.show')->with(['message'=> 'Wrong ID!!']);
+
     }
 }

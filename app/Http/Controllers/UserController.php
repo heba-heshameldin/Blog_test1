@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Facades\DB;
 use App\Models\User;
-use App\Http\Validator;
-use \Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -59,9 +56,22 @@ class UserController extends Controller
     }
 
 
-    public function logout(Request $request)
+    public function logout()
     {
         Auth::logout();
         return redirect('/signin');
     }
+
+    public function profile()
+    {
+        $posts = Post::where('user_id', @Auth::user()->id)->get(); // all posts per user
+        return view('profile', compact('posts'));
+    }
+
+    public function editprofile()
+    {
+        return view('editprofile');
+    }
+    
+
 }

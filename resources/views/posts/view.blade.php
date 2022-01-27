@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="post-content">
-                    <img src="{{ URL::asset('assets/img') . '/' . $post->thumbnail }}" alt="post-image"
+                    <img src="{{ URL::to('/storage/posts') . '/' . $post->thumbnail }}" alt="post-image"
                         class="img-responsive post-image">
                     <div class="post-container">
                         <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="user"
