@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Category;
+use App\Models\Comment;
 
 class PostController extends Controller
 {
@@ -32,10 +34,9 @@ class PostController extends Controller
     public function view($id)
     {
         $post = Post::where('id',$id)->first(); 
-        return view('posts.view', compact('post'));
-
+      $comments=  Comment::select('comments.id','description', 'users.name')->where('post_id', $id)->join("users", "users.id", "comments.user_id")->get();
+        return view('posts.view', compact('post','comments'));
     }
-
 
 
     public function create()
@@ -65,7 +66,7 @@ class PostController extends Controller
             $post->thumbnail =  $imageName; 
             $post->save(); 
         }
-        return redirect()->intended('post');
+        return redirect()->intended('posts');
     }
     
 
@@ -75,8 +76,7 @@ class PostController extends Controller
         $catagories = Category::all();
         return view('posts.edit', compact('post','catagories'));
     }
-    // $catagories = Category::find($id);
-    // return view('posts.edit', compact('catagories'));
+ 
 
     public function update(Request $request)
     {
@@ -104,13 +104,15 @@ class PostController extends Controller
     public function delete($id)
     {
         $post = Post::find($id);
-        @unlink(public_path($post->thumbnail));
+@unlink(public_path($post->thumbnail));
         if ($post != null) {
         $post->delete();
-        return redirect()->route->intended('posts')->with('success', 'posts Updated Successfully!');
+        return redirect()->intended('posts')->with('success', 'posts Updated Successfully!');
     }
 
     return redirect()->route('posts.show')->with(['message'=> 'Wrong ID!!']);
 
     }
+
+   
 }

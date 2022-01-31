@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Catagory;
+use App\Models\Category;
 
 class CategorySeeder extends Seeder
 {
@@ -25,6 +25,6 @@ class CategorySeeder extends Seeder
         ];
 
         // Now just pass this array to regular Eloquent function and Voila!
-        Catagory::insert($catagories);
+        Category::insert($catagories);
     }
 }

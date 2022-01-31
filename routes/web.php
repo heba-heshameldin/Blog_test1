@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserController;
@@ -46,8 +47,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('create', [PostController::class, 'create'])->name('posts.create');
     Route::post('update/{id}', [PostController::class, 'update'])->name('posts.update');
     Route::get('edit/{id}', [PostController::class, 'edit'])->name('posts.edit');
-    Route::get('delete/{id}', [PostController::class, 'delete'])->name('posts.delete');
-
+    Route::delete('delete/{id}', [PostController::class, 'delete'])->name('posts.delete');
+    Route::post('comment/{id}', [CommentController::class, 'comment'])->name('comment.posts');
+    Route::get('editcomment/{id}', [CommentController::class, 'edit'])->name('comment.edit');
+    Route::POST('updatecomment/{id}', [CommentController::class, 'update'])->name('comment.update');
+    Route::delete('deletecomment/{id}', [CommentController::class, 'destroy'])->name('comment.destroy');
 }); 
    
     Route::post('logout', [SessionController::class, 'destroy']);

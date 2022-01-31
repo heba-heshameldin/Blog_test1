@@ -27,7 +27,7 @@
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                             <li><a class="dropdown-item" href="{{ URL::to('users/profile') }}">MyProfile
                                 </a></li>
-                            <li><a class="dropdown-item" href="edit">Edit Profile
+                            <li><a class="dropdown-item" href="{{route('user.editprofile')}}">Edit Profile
                                 </a></li>
 
                             <li>
