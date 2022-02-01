@@ -1,6 +1,6 @@
 <x-layout>
     <div class="page" style="margin-top:40px; margin-left:40px; margin-right:40px">
-
+ 
         @csrf
         <select onchange="location = '/posts/category/' + this.value;" name="category" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style="margin-top:5px">
             <option selected disabled>Choose categories</option>
@@ -9,7 +9,7 @@
             @endforeach
         </select>
         {{-- @if (Auth::check()) --}}
-
+ 
         <button type="button" class="btn btn-primary" style="margin-bottom: 20px ;  margin-top:17px; position:relative:right"><a href="{{ route('posts.create') }}" style="color: white; text-decoration: none ; "> ➕ Add new
                 post</a></button>
         {{-- @else
@@ -17,12 +17,12 @@
                 style="margin-bottom: 20px ;  margin-top:17px; position:relative:right"><a href="/signin"
                     style="color: white; text-decoration: none ; "> ➕ Add new post</a></button>
         @endif --}}
-
+ 
         <!--For Row containing all card-->
         <div class="row  ">
-
+ 
             @foreach ($posts as $post)
-
+ 
             <div class="col-lg-4 col-md-6">
                 <!--Card image-->
                 <div class="card card-cascade card-ecommerce wider shadow mb-5  ">
@@ -42,22 +42,23 @@
                         <br>
                         <h6 style="display: inline-block">User Name :</h6>
                         <span>{{ App\Models\User::find($post->user_id)->name }}</span>
-
-
+ 
+ 
                         <!--Card footer-->
                         <div>
                             <button type="button" class="btn btn-success" style="margin-bottom: 20px"><a href="/posts/view/{{ $post->id }}" style="color: white; text-decoration: none">View</a></button>
-                            
-
+ 
+                            @can('isPostAuth', $post)
+ 
                             <button type="button" class="btn btn-primary" style="margin-bottom: 20px"><a href="{{ route('posts.edit', $post->id) }}" style="color: white; text-decoration: none">Edit</a></button>
-                          
-
+ 
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="{{ '#exampleModal' . $post->id }}" style="margin-bottom: 20px">
                                Delete
                             </button>
-
+                            @endcan
+ 
                             <!-- Modal -->
-
+ 
                             <div class="modal fade" id="{{ 'exampleModal' . $post->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -87,5 +88,5 @@
             @endforeach
         </div>
     </div>
-
+ 
 </x-layout>

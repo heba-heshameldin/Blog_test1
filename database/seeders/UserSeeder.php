@@ -3,7 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\User;
+// use App\User;
+use App\Models\User;
 
 class UserSeeder extends Seeder
 {
@@ -14,6 +15,10 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $user = new User();
+        $user->email = 'test@test.com';
+        $user->password = bcrypt(12345678);
+        $user->save();
+
     }
 }

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 
+use Illuminate\Support\Facades\Gate;
 
 
 class CommentController extends Controller
@@ -38,16 +39,25 @@ class CommentController extends Controller
  
     public function update(Request $request,$id)
     {
-        $comment = Comment::find($id); 
+        $comment = Comment::findOrFail($id); 
+        Gate::authorize('isCommentAuth',$comment);
 
         $this->validate($request,[
-            'description'=> 'required'
-        
+            'description'=> 'required'        
         ]);
-        $comment->description = $request->description;
-        $comment->save();
-        Session::flash('sucess','Comment Update');
-        return redirect('/posts/view/'.$comment);
+
+
+        $comment->update([
+            'description' => $request->description,
+        ]);
+
+        if (!$comment) {
+            Session::flash('sucess','Comment failed to update');
+        } else {
+            Session::flash('sucess','Comment Update');
+        }
+
+        return redirect('/posts/view/'.$comment->post->id);
       
 
        
@@ -55,11 +65,13 @@ class CommentController extends Controller
 
     public function destroy($id)
     {
-        $comment = Comment::find($id);
-
+        $comment = Comment::findOrFail($id); 
+        Gate::authorize('isCommentAuth',$comment);
+        
         if ($comment != null) {
         $comment->delete();
-        return redirect()->intended('comment')->with('success', 'comment Updated Successfully!');
+        return redirect('/posts/view/'.$comment->post->id)->with('success', 'comment Deleted Successfully!');
+
     }
 
     return redirect()->route('posts.show')->with(['message'=> 'Wrong ID!!']);

@@ -25,6 +25,13 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        //Post Auther Check
+        Gate::define('isPostAuth',fn ($user,$post) => $user->id === $post->user_id);
+
+
+        //Comment Auther Check
+        Gate::define('isCommentAuth',fn ($user,$comment) => $user->id === $comment->user_id);
+
+
     }
 }
