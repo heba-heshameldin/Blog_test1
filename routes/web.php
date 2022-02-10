@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +26,9 @@ Route::get('/', function () {
 //     return Auth::logout();
 // });
 
+Route::post('login', [AuthController::class, 'login'])->name('login');
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('register', [AuthController::class, 'register'])->name('register');
 
 Route::view("signin", 'signin')->name('signin');
 Route::view("signup", 'signup');
@@ -33,8 +36,6 @@ Route::prefix('users')->group(function () {
     Route::get('profile', [UserController::class, 'profile'])->name('user.profile')->middleware('auth');
     Route::get('edit', [UserController::class, 'editprofile'])->name('user.editprofile')->middleware('auth');
     Route::post('edit', [UserController::class, 'update'])->name('user.update')->middleware('auth');
-    Route::post('store', [UserController::class, 'store']);
-    Route::post('login', [UserController::class, 'login']);
 });
 
 Route::get('posts', [PostController::class, 'index'])->name('posts.show');
@@ -54,6 +55,5 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('deletecomment/{id}', [CommentController::class, 'destroy'])->name('comment.destroy');
 }); 
    
-    Route::post('logout', [SessionController::class, 'destroy']);
     //
 });

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Comment\StoreCommentRequest;
+use App\Http\Requests\Comment\UpdateCommentRequest;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Comment;
@@ -15,28 +17,21 @@ use Illuminate\Support\Facades\Gate;
 
 class CommentController extends Controller
 {
-    public function comment(Request $request, $postId){
-        // return $post_id;
-        $this->validate($request,[
-            'description'=> 'required'
-        
-        ]);
-        $comment= new Comment;
-        $comment->user_id = Auth::user()->id;
-        $comment->post_id= $postId;
-        $comment->description = $request->description;
-        $comment->save();
+    public function comment(StoreCommentRequest $request, $postId){
+
+        Comment::create($request->all());
         return redirect('/posts/view/'.$postId);
-
-
-
     }
+
+
     public function edit($id)
     {
         $comment = Comment::find($id); // all posts per category
         return view('comment.edit', compact('comment'));
     }
  
+   
+
     public function update(Request $request,$id)
     {
         $comment = Comment::findOrFail($id); 

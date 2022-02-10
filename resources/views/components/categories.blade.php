@@ -2,5 +2,7 @@
     <option selected disabled>Choose categories</option>
     @foreach ($categories as $category)
         <option value="{{ $category->id }}">{{ $category->title }}</option>
+        {{-- <input type="hidden" value="{{ $category->id }}" name="category_id"> --}}
+
     @endforeach
 </select>

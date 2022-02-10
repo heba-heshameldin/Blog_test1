@@ -7,7 +7,7 @@
                         class="img-fluid" alt="Sample image">
                 </div>
                 <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                    <form class="" action="{{ URL::to('users/login') }}" method="post">
+                    <form class="" action="{{route('login')}}" method="post">
 
 
                         @csrf
@@ -28,8 +28,8 @@
 
 
                                 </div>
-
-
+                                
+                                
                                 <div class="d-flex justify-content-between align-items-center">
                                     <!-- Checkbox -->
                                     <div class="form-check mb-0">
@@ -40,10 +40,15 @@
                                     </div>
                                     <a href="#!" class="text-body">Forgot password?</a>
                                 </div>
+                                
+                                <div class="form-outline mb-4">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
+                                </div>
                                 <div class="text-center text-lg-start mt-4 pt-2">
                                     <button type="submit" class="btn btn-primary btn-lg"
                                         style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+                                        <span style="color: red"> @error('account'){{ $message }}@enderror</span>
                                     <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="signup"
                                             class="link-danger">Register</a></p>
                                 </div>

@@ -23,34 +23,34 @@
                             <div class="line-divider"></div>
                             <div class="comment-container">
                                 <hr><b>Comments: </b><br>
- 
+
                                 @foreach ($comments as $comment)
                                 <div class="post-comment">
- 
- 
+
+
                                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="profile-photo-sm">
- 
+
                                     <p><a href="timeline.html" class="profile-link" style="display: block">{{$comment->name}}</a>
- 
- 
+
+
                                         <i class="em em-laughing"></i>
                                         {{ $comment->description }}
- 
+
                                     </p>
                                 </div>
- 
+
                                 @can('isCommentAuth', $comment)
- 
+
                                 <div class="btn" style='float: right'>
                                     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="{{ '#exampleModal' . $comment->id }}" style="margin-bottom: 20px; width: 70px">
                                         Edit
                                     </button>
- 
-                                     <!-- Modal -->
- 
-                                     <div class="modal fade" id="{{ 'exampleModal' . $comment->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                         <div class="modal-dialog">
-                                             <div class="modal-content">
+
+                                    <!-- Modal -->
+
+                                    <div class="modal fade" id="{{ 'exampleModal' . $comment->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -70,12 +70,12 @@
                                                 </div>
                                             </div>
                                         </div>
-                                         {{-- @endif --}}
-                                     </div>
+                                        {{-- @endif --}}
+                                    </div>
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-bottom: 20px; width: 70px">
                                         Delete </button>
- 
+
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
@@ -89,34 +89,37 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                                                     <form action="{{ route('comment.destroy', $comment->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE') 
-                                                    <input type="submit" class="btn btn-danger" value="Delete">
-                                                    </form>  
- 
+                                                    <form action="{{ route('comment.destroy', $comment->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <input type="submit" class="btn btn-danger" value="Delete">
+                                                    </form>
+
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 @endcan
- 
+
                                 <div class="clear" style="clear: both"></div>
- 
+
                                 <hr>
                                 <div class="line-divider"></div>
- 
- 
+
+
                                 @endforeach
                                 {{ $comments->links() }}
- 
+
                             </div>
                             <div class="post-comment">
                                 <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="profile-photo-sm">
                                 <form method="POST" action="{{ route('comment.posts', $post->id) }}">
                                     @csrf
                                     <input type="text" class="form-control" placeholder="Post a comment" name="description" style="width: 420px ;height: 50px;">
+                                    <x-Alerts />
+                                    <input type="hidden" value="{{@Auth::user()->id}}" name="user_id">
+                                    <input type="hidden" value="{{$post->id}}" name="post_id">
                             </div>
                             <div class="button">
                                 <button type="submit" class="btn btn-primary" style="margin-bottom: 10px; margin-left:200px">Add comment</button>

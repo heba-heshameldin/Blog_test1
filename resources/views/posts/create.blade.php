@@ -4,7 +4,7 @@
     <form class="row g-3" enctype="multipart/form-data" style="margin: 70px;margin-left:350px "
         action="{{ route('posts.create') }}" method="post">
         @csrf
-
+        <input type="hidden" value="{{@Auth::user()->id}}" name="user_id">
 
         <div class="col-md-4">
             <label for="inputTitle4" class="form-label-lg  mb-3" style="color:rgb(25, 140, 218); ">Title</label>
@@ -18,6 +18,7 @@
             <label for="inputCategoryTitle4" class="form-label" style="color:rgb(25, 140, 218);">Category
                 Title</label>
             <x-categories />
+
 
         </div>
 
