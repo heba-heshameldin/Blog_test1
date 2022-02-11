@@ -42,18 +42,19 @@ Route::get('posts', [PostController::class, 'index'])->name('posts.show');
 
 Route::middleware(['auth'])->group(function () {
     Route::prefix('posts')->group(function () {
-    Route::get('category/{title}', [PostController::class, 'category'])->name('posts.category');
-    Route::get('view/{id}', [PostController::class, 'view'])->name('posts.view');
-    Route::post('create', [PostController::class, 'store']);
-    Route::get('create', [PostController::class, 'create'])->name('posts.create');
-    Route::post('update/{id}', [PostController::class, 'update'])->name('posts.update');
-    Route::get('edit/{id}', [PostController::class, 'edit'])->name('posts.edit');
-    Route::delete('delete/{id}', [PostController::class, 'delete'])->name('posts.delete');
-    Route::post('comment/{id}', [CommentController::class, 'comment'])->name('comment.posts');
-    Route::get('editcomment/{id}', [CommentController::class, 'edit'])->name('comment.edit');
-    Route::POST('updatecomment/{id}', [CommentController::class, 'update'])->name('comment.update');
-    Route::delete('deletecomment/{id}', [CommentController::class, 'destroy'])->name('comment.destroy');
-}); 
-   
+        Route::get('category/{title}', [PostController::class, 'category'])->name('posts.category');
+        Route::get('view/{post}', [PostController::class, 'view'])->name('posts.view');
+        Route::post('create', [PostController::class, 'store']);
+        Route::get('create', [PostController::class, 'create'])->name('posts.create');
+        Route::put('update/{post}', [PostController::class, 'update'])->name('posts.update');
+        Route::get('edit/{post}', [PostController::class, 'edit'])->name('posts.edit');
+        Route::delete('delete/{post}', [PostController::class, 'delete'])->name('posts.delete');
+        Route::prefix('comment')->group(function () {
+            Route::post('comment/{id}', [CommentController::class, 'comment'])->name('comment.posts');
+            Route::get('edit/{id}', [CommentController::class, 'edit'])->name('comment.edit');
+            Route::POST('update/{id}', [CommentController::class, 'update'])->name('comment.update');
+            Route::delete('delete/{id}', [CommentController::class, 'destroy'])->name('comment.destroy');
+        });
+    });
     //
 });

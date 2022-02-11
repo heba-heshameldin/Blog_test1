@@ -33,12 +33,13 @@ class PostController extends Controller
         return view('posts.index', compact('catagories', 'posts'));
     }
 
-
-    public function view($id)
+    /**
+         * @param \App\Models\Post $post
+         */
+    public function view(Post $post)
     {
-        $post = Post::findOrFail($id);
 
-        $comments =  Comment::select('comments.id', 'description', 'user_id', 'users.name')->where('post_id', $id)->join("users", "users.id", "comments.user_id")->paginate(2);
+        $comments =  Comment::select('comments.id', 'description', 'user_id', 'users.name')->where('post_id', $post)->join("users", "users.id", "comments.user_id")->paginate(2);
         return view('posts.view', compact('post', 'comments'));
     }
 
@@ -58,39 +59,28 @@ class PostController extends Controller
         if ($request->img->move(public_path('storage/posts'), $imageName)) {
             $input['thumbnail'] =  $imageName;
         }
-          Post::create($input );
+        Post::create($input);
         return redirect()->intended('posts');
     }
 
-
-    public function edit($id)
+    /**
+     * @param \App\Models\Post $post
+     */
+    public function edit(Post $post)
     {
-        $post = Post::findOrFail($id);
-
         Gate::authorize('isPostAuth', $post);
-        $catagories = Category::all();
-        return view('posts.edit', compact('post', 'catagories'));
+        return view('posts.edit', compact('post'));
     }
 
 
-    public function update(Request $request)
+    public function update(Post $post, Request $request )
     {
-        $post = Post::findOrFail($request->id);
-
         Gate::authorize('isPostAuth', $post);
-
-
-        $request->validate([
-            'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'category' => 'required',
-            'title' => 'required',
-            'description' => 'required',
-
-        ]);
-        $post->user_id = Auth::user()->id;
-        $post->category_id = $request->category;
-        $post->title =  $request->title;
-        $post->description =  $request->description;
+        $post->update($request->all());
+        // $post->user_id = Auth::user()->id;
+        // $post->category_id = $request->category;
+        // $post->title =  $request->title;
+        // $post->description =  $request->description;
         $imageName = $post->thumbnail;  // take old photo
         if (!empty($request->img)) { // if no uploaded photo, keep the old one
             $request->img->move(public_path('storage/posts'), $imageName);
@@ -100,9 +90,8 @@ class PostController extends Controller
     }
 
 
-    public function delete($id)
+    public function delete(Post $post)
     {
-        $post = Post::findOrFail($id);
 
         Gate::authorize('isPostAuth', $post);
 
