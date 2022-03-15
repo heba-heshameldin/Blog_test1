@@ -1,24 +1,15 @@
 <x-layout>
     <div class="page" style="margin-top:40px; margin-left:40px; margin-right:40px">
 
-        @csrf
         <select onchange="location = '/posts/category/' + this.value;" name="category" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style="margin-top:5px">
             <option selected disabled>Choose categories</option>
             @foreach ($catagories as $category)
-            <option value="{{ $category->title }}">{{ $category->title }}</option>
+            <option value="{{ $category->id }}">{{ $category->title }}</option>
             @endforeach
         </select>
-        {{-- @if (Auth::check()) --}}
-
         <button type="button" class="btn btn-primary" style="margin-bottom: 20px ;  margin-top:17px; position:relative:right"><a href="{{ route('posts.create') }}" style="color: white; text-decoration: none ; "> ➕ Add new
                 post</a></button>
-        {{-- @else
-            <button type="button" class="btn btn-primary"
-                style="margin-bottom: 20px ;  margin-top:17px; position:relative:right"><a href="/signin"
-                    style="color: white; text-decoration: none ; "> ➕ Add new post</a></button>
-        @endif --}}
 
-        <!--For Row containing all card-->
         <div class="row  ">
 
             @foreach ($posts as $post)
@@ -86,6 +77,7 @@
             @endforeach
         </div>
         {{ $posts->links() }}
+        {{-- {{dd($posts)}} --}}
 
     </div>
 

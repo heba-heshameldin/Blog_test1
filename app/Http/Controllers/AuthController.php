@@ -13,9 +13,9 @@ class AuthController extends Controller
 
     public function register(RegisterRequest $request)
     {
-      $input = $request->all();
-      $input['password'] = bcrypt($request->password);
-        User::create( $input);
+        $input = $request->all();
+        $input['password'] = bcrypt($request->password);
+        User::create($input);
         return $this->loginAttempt($request);
     }
 
@@ -23,19 +23,19 @@ class AuthController extends Controller
     {
         return $this->loginAttempt($request);
     }
-    
-    public function loginAttempt(Request $request){
+
+    public function loginAttempt(Request $request)
+    {
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             return redirect()->intended('users/profile');
-        } 
+        }
     }
 
     public function logout()
     {
-        
+
         Auth::logout();
         return redirect('/signin');
     }
-
 }

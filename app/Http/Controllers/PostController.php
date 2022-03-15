@@ -1,16 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Requests\Post\StorePostRequest;
 
+use App\Http\Requests\Post\StorePostRequest;
+use App\Models\category;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
-use App\Models\Category;
 use App\Models\Comment;
-
 use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
@@ -25,21 +23,22 @@ class PostController extends Controller
     }
 
 
-    public function category($title)
+    public function category($id)
     {
         $catagories = Category::get();
-        $category_id = Category::where('title', $title)->first()->id;
-        $posts = Post::where('category_id', $category_id)->get(); // all posts per category
+
+        $posts = Post::where('category_id', $id)->get(); // all posts per category
         return view('posts.index', compact('catagories', 'posts'));
     }
 
     /**
-         * @param \App\Models\Post $post
-         */
+     * @param \App\Models\Post $post
+     */
+
     public function view(Post $post)
     {
 
-        $comments =  Comment::select('comments.id', 'description', 'user_id', 'users.name')->where('post_id', $post)->join("users", "users.id", "comments.user_id")->paginate(2);
+        $comments =  Comment::select('comments.id', 'description', 'user_id', 'users.name')->where('post_id', $post->id)->join("users", "users.id", "comments.user_id")->paginate(2);
         return view('posts.view', compact('post', 'comments'));
     }
 
@@ -73,7 +72,7 @@ class PostController extends Controller
     }
 
 
-    public function update(Post $post, Request $request )
+    public function update(Post $post, Request $request)
     {
         Gate::authorize('isPostAuth', $post);
         $post->update($request->all());

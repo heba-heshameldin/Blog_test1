@@ -16,7 +16,7 @@
         <div class="col-md-4">
             <label for="inputCategoryTitle4" class="form-label" style="color:rgb(25, 140, 218);">Category
                 Title</label>
-            <x-categories  :categoryId="$post->category_id" name="heba" />
+            <x-categories :categoryId="$post->category_id"  />
 
 
 
@@ -31,6 +31,7 @@
         {{-- <div>
             <img src="{{asset($post->thumbnail)}}"/>
         </div> --}}
+        <img src="{{ URL::to('/storage/posts') . '/' . $post->thumbnail }}" alt="" style="weight:80px ; height: 90px ;">
 
         <label for="img" style="color:rgb(25, 140, 218);">Select image:</label>
         <input style="color:rgb(25, 140, 218);" type="file" id="img" name="img" accept="image/*">

@@ -17,28 +17,29 @@ use Illuminate\Support\Facades\Gate;
 
 class CommentController extends Controller
 {
-    public function comment(StoreCommentRequest $request, $postId){
+    public function comment(StoreCommentRequest $request, $postId)
+    {
 
         Comment::create($request->all());
-        return redirect('/posts/view/'.$postId);
+        return redirect('/posts/view/' . $postId);
     }
 
 
-    public function edit($id)
+    public function edit(Comment $comment)
     {
-        $comment = Comment::find($id); // all posts per category
+        // all posts per category
         return view('comment.edit', compact('comment'));
     }
- 
-   
 
-    public function update(Request $request,$id)
+
+
+    public function update(Request $request, Comment $comment)
     {
-        $comment = Comment::findOrFail($id); 
-        Gate::authorize('isCommentAuth',$comment);
 
-        $this->validate($request,[
-            'description'=> 'required'        
+        Gate::authorize('isCommentAuth', $comment);
+
+        $this->validate($request, [
+            'description' => 'required'
         ]);
 
 
@@ -47,29 +48,24 @@ class CommentController extends Controller
         ]);
 
         if (!$comment) {
-            Session::flash('sucess','Comment failed to update');
+            Session::flash('sucess', 'Comment failed to update');
         } else {
-            Session::flash('sucess','Comment Update');
+            Session::flash('sucess', 'Comment Update');
         }
 
-        return redirect('/posts/view/'.$comment->post->id);
-      
-
-       
+        return redirect('/posts/view/' . $comment->post->id);
     }
 
-    public function destroy($id)
+    public function destroy(Comment $comment)
     {
-        $comment = Comment::findOrFail($id); 
-        Gate::authorize('isCommentAuth',$comment);
         
+        Gate::authorize('isCommentAuth', $comment);
+
         if ($comment != null) {
-        $comment->delete();
-        return redirect('/posts/view/'.$comment->post->id)->with('success', 'comment Deleted Successfully!');
+            $comment->delete();
+            return redirect('/posts/view/' . $comment->post->id)->with('success', 'comment Deleted Successfully!');
+        }
 
-    }
-
-    return redirect()->route('posts.show')->with(['message'=> 'Wrong ID!!']);
-
+        return redirect()->route('posts.show')->with(['message' => 'Wrong ID!!']);
     }
 }

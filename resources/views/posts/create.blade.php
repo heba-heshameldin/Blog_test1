@@ -17,7 +17,7 @@
         <div class="col-md-4">
             <label for="inputCategoryTitle4" class="form-label" style="color:rgb(25, 140, 218);">Category
                 Title</label>
-            <x-categories />
+                <x-categories  />
 
 
         </div>

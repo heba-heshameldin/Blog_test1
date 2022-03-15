@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use  Illuminate\Support\Facades\Schema; // At the top of your file
+
+
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -31,6 +34,7 @@ class AuthServiceProvider extends ServiceProvider
 
         //Comment Auther Check
         Gate::define('isCommentAuth',fn ($user,$comment) => $user->id === $comment->user_id);
+        Schema::defaultStringLength(191);
 
 
     }

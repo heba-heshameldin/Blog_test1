@@ -9,19 +9,16 @@ class Categories extends Component
 {
     public $categoryId;
     public $categories;
-    public $name;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($categoryId,$name)
+    public function __construct($categoryId = null)
     {
         $this->categories = Category::get();
-        $this->categoryId=$categoryId;
-        $this->name=$name;
-
+        $this->categoryId = $categoryId;
     }
 
     /**
