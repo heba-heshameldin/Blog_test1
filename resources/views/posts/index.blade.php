@@ -7,7 +7,7 @@
             <option value="{{ $category->id }}">{{ $category->title }}</option>
             @endforeach
         </select>
-        <button type="button" class="btn btn-primary" style="margin-bottom: 20px ;  margin-top:17px; position:relative:right"><a href="{{ route('posts.create') }}" style="color: white; text-decoration: none ; "> ➕ Add new
+        <button type="button" class="btn btn-primary" style="margin-bottom: 20px ;  margin-top:17px; position:relative-right"><a href="{{ route('posts.create') }}" style="color: white; text-decoration: none ; "> ➕ Add new
                 post</a></button>
 
         <div class="row  ">

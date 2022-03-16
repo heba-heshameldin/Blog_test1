@@ -1,10 +1,11 @@
 <?php
 
+use App\View\Components\Categories;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoryTable extends Migration
+class CreateAdminRolasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +14,11 @@ class CreateCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('catagories', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('title');
-
-            // $table->timestamps();
+        Schema::create('admin_rolas', function (Blueprint $table) {
+            $table->id();
+            $table->integer('admin_id');
+            $table->integer('role_id');
+            $table->timestamps();
         });
     }
 
@@ -28,6 +29,6 @@ class CreateCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('catagories');
+        Schema::dropIfExists('admin_rolas');
     }
 }

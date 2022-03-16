@@ -38,6 +38,14 @@ Route::prefix('users')->group(function () {
     Route::post('edit', [UserController::class, 'update'])->name('user.update')->middleware('auth');
 });
 
+Route::prefix('admin')->group(function () {
+    Route::view("dashboard", 'admin.dashboard')->name('dashboard');
+    Route::view("tabels", 'admin.tabels')->name('tabels');
+    Route::view("users", 'admin.user')->name('admin.users');
+    Route::view("posts", 'admin.post')->name('admin.posts');
+    Route::view("comment", 'admin.comment')->name('admin.comment');
+});
+
 Route::get('posts', [PostController::class, 'index'])->name('posts.show');
 
 Route::middleware(['auth'])->group(function () {
