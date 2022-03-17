@@ -159,13 +159,13 @@
                             <a href="{{ route('admin.users') }}"><i class="fa fa-table fa-fw"></i> Users</a>
     </li>
                         <li>
-                            <a href="{{ route('admin.posts') }}"><i class="fa fa-table fa-fw"></i> Posts</a>
+                            <a href="{{ route('admin.post') }}"><i class="fa fa-table fa-fw"></i> Posts</a>
                         </li>
                         <li>
                             <a href="{{ route('tabels') }}"><i class="fa fa-table fa-fw"></i> Categories</a>
                         </li>
                         <li>
-                            <a href="{{ route('admin.comment') }}"><i class="fa fa-table fa-fw"></i> Comments</a>
+                            <a href=""><i class="fa fa-table fa-fw"></i> Comments</a>
                         </li>
                     </ul>
                 </div>

@@ -10,7 +10,7 @@
                         <div class="post-detail">
                             <div class="user-info">
                                 <h5><a href="timeline.html" class="profile-link">{{
-                                        App\Models\User::find($post->user_id)->name }}</a>
+                                        App\Models\User::find($post->user_id)->name ?? 'No name' }}</a>
                                     <p class="text-muted">Published in {{ $post->created_at }}</p>
                             </div>
                             <hr>
@@ -30,7 +30,7 @@
 
                                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="profile-photo-sm">
 
-                                    <p><a href="timeline.html" class="profile-link" style="display: block">{{$comment->name}}</a>
+                                    <p><a href="timeline.html" class="profile-link" style="display: block">{{$comment->name ?? 'No name'}}</a>
 
 
                                         <i class="em em-laughing"></i>

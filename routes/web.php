@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\UserControllers;
+use App\Http\Controllers\Admin\PostControllers;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
@@ -38,12 +40,18 @@ Route::prefix('users')->group(function () {
     Route::post('edit', [UserController::class, 'update'])->name('user.update')->middleware('auth');
 });
 
-Route::prefix('admin')->group(function () {
+Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function () {
     Route::view("dashboard", 'admin.dashboard')->name('dashboard');
+    Route::get('users', [UserControllers::class, 'main'])->name('admin.users');
+    Route::get('user-edit/{id}', [UserControllers::class, 'edit'])->name('admin.users-edit');
+    Route::put('user-update/{id}',[UserControllers::class,'update'])->name('admin.users-update');
+    Route::delete('delete/{id}',[UserControllers::class,'destroy'])->name('admin.users-delete');
+    Route::get('post',[PostControllers::class,'main'])->name('admin.post');
+    Route::get('post-edit/{id}', [PostControllers::class, 'edit'])->name('admin.post-edit');
+    Route::put('post-update/{id}',[PostControllers::class,'update'])->name('admin.post-update');
+    Route::delete('post-delete/{id}',[PostControllers::class,'destroy'])->name('admin.post-delete');
     Route::view("tabels", 'admin.tabels')->name('tabels');
-    Route::view("users", 'admin.user')->name('admin.users');
-    Route::view("posts", 'admin.post')->name('admin.posts');
-    Route::view("comment", 'admin.comment')->name('admin.comment');
+
 });
 
 Route::get('posts', [PostController::class, 'index'])->name('posts.show');

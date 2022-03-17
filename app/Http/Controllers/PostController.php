@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Post\StorePostRequest;
+use App\Http\Requests\Post\UpdatePostRequest;
+
 use App\Models\category;
 use Illuminate\Http\Request;
 use App\Models\Post;
@@ -72,15 +74,12 @@ class PostController extends Controller
     }
 
 
-    public function update(Post $post, Request $request)
+    public function update( Post $post, Request $request)
     {
         Gate::authorize('isPostAuth', $post);
         $post->update($request->all());
-        // $post->user_id = Auth::user()->id;
-        // $post->category_id = $request->category;
-        // $post->title =  $request->title;
-        // $post->description =  $request->description;
-        $imageName = $post->thumbnail;  // take old photo
+      
+        $imageName = $post->thumbnail;
         if (!empty($request->img)) { // if no uploaded photo, keep the old one
             $request->img->move(public_path('storage/posts'), $imageName);
         }

@@ -32,7 +32,7 @@
                         <span>{{ App\Models\Category::find($post->category_id)->title }}</span>
                         <br>
                         <h6 style="display: inline-block">User Name :</h6>
-                        <span>{{ App\Models\User::find($post->user_id)->name }}</span>
+                        <span>{{ App\Models\User::find($post->user_id)->name ?? 'No name'}}</span>
 
 
                         <!--Card footer-->
