@@ -151,10 +151,6 @@
                         <li>
                             <a href="{{ route('dashboard') }}" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
-
-                        <li>
-                            <a href="{{ route('tabels') }}"><i class="fa fa-table fa-fw"></i> Tables</a>
-                        </li>
                         <li>
                             <a href="{{ route('admin.users') }}"><i class="fa fa-table fa-fw"></i> Users</a>
     </li>
@@ -162,10 +158,10 @@
                             <a href="{{ route('admin.post') }}"><i class="fa fa-table fa-fw"></i> Posts</a>
                         </li>
                         <li>
-                            <a href="{{ route('tabels') }}"><i class="fa fa-table fa-fw"></i> Categories</a>
+                            <a href="{{ route('admin.category') }}"><i class="fa fa-table fa-fw"></i> Categories</a>
                         </li>
                         <li>
-                            <a href=""><i class="fa fa-table fa-fw"></i> Comments</a>
+                            <a href="{{ route('admin.comment') }}"><i class="fa fa-table fa-fw"></i> Comments</a>
                         </li>
                     </ul>
                 </div>

@@ -55,6 +55,7 @@ class PostController extends Controller
 
     public function store(StorePostRequest $request)
     {
+        // vulnerability
         $input = $request->all();
         $imageName = time() . '.' . $request->img->extension();
         if ($request->img->move(public_path('storage/posts'), $imageName)) {
@@ -77,14 +78,19 @@ class PostController extends Controller
     public function update( Post $post, Request $request)
     {
         Gate::authorize('isPostAuth', $post);
-        $post->update($request->all());
-      
-        $imageName = $post->thumbnail;
-        if (!empty($request->img)) { // if no uploaded photo, keep the old one
-            $request->img->move(public_path('storage/posts'), $imageName);
+        if (empty($request->category_id) ||  empty($request->description) || empty($request->title)) {
+            return redirect()->back()->with('delete', 'Please complete all the fields');
+        } else {
+            // Vulnerability
+            $post->update($request->all());
+    
+            $imageName = $post->thumbnail;
+            if (!empty($request->img)) { // if no uploaded photo, keep the old one
+                $request->img->move(public_path('storage/posts'), $imageName);
+            }
+            $post->save();
+            return redirect()->intended('posts');
         }
-        $post->save();
-        return redirect()->intended('posts');
     }
 
 

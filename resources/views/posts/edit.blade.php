@@ -1,5 +1,16 @@
 <x-layout>
 
+<div class="container" style="width: fit-content; margin-top:5px">
+                @if(session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{session('status')}}
+                </div>
+                @elseif(session('delete'))
+                <div class="alert alert-danger" role="alert">
+                    {{session('delete')}}
+                </div>
+                @endif
+            </div>
     <h1 style="margin-top: 50px;text-align: center;color:rgb(25, 140, 218)">Edit Post</h1>
     <form class="row g-3" enctype="multipart/form-data" style="margin: 70px;margin-left:350px " action="{{ route('posts.update', $post->id) }}" method="post">
         @method("put")
@@ -15,7 +26,7 @@
         <br>
         <div class="col-md-4">
             <label for="inputCategoryTitle4" class="form-label" style="color:rgb(25, 140, 218);">Category
-                Title</label>
+                Title</label>                                        
             <x-categories :categoryId="$post->category_id"  />
 
 
@@ -28,13 +39,12 @@
             <span style="color: red"> @error('description'){{ $message }}@enderror</span>
         </div>
 
-        {{-- <div>
-            <img src="{{asset($post->thumbnail)}}"/>
-        </div> --}}
-        <img src="{{ URL::to('/storage/posts') . '/' . $post->thumbnail }}" alt="" style="weight:80px ; height: 90px ;">
+        <div class="col-8">
+            <img src="{{ URL::to('/storage/posts') . '/' . $post->thumbnail }}" alt="" class="img-thumbnail" style="width:200px ; height: 200px ;">
+            </br></br><label for="img" style="color:rgb(25, 140, 218);">Select image:</label>
+            <input style="color:rgb(25, 140, 218);" type="file" id="img" name="img" accept="image/*">
+        </div>
 
-        <label for="img" style="color:rgb(25, 140, 218);">Select image:</label>
-        <input style="color:rgb(25, 140, 218);" type="file" id="img" name="img" accept="image/*">
         <div class="col-12">
             <span style="color: red"> @error('img'){{ $message }}@enderror</span>
             <br>

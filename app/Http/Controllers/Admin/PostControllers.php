@@ -22,16 +22,19 @@ class PostControllers extends Controller
 
     public function update(Request $request, $id){
         $post = Post::find($id);
-        $post->category_id = $request->category_id;
-        $post->title =  $request->title;
-        $post->description =  $request->description;
-        $imageName = $post->thumbnail;
-        if (!empty($request->img)) { // if no uploaded photo, keep the old one
-            $request->img->move(public_path('storage/posts'), $imageName);
+        if(empty($request->category_id) ||  empty($request->description) || empty($request->title) || empty($id)){
+            return redirect()->back()->with('delete', 'Please complete all the fields');   
+        } else {
+            $post->category_id = $request->category_id;
+            $post->title =  $request->title;
+            $post->description =  $request->description;
+            $imageName = $post->thumbnail;
+            if (!empty($request->img)) { // if no uploaded photo, keep the old one
+                $request->img->move(public_path('storage/posts'), $imageName);
+            }
+            $post->update();
+            return redirect()->intended('admin/post')->with('status','Your Data is Updated');
         }
-        $post->update();
-        return redirect()->intended('admin/post')->with('status','Your Data is Updated');
-
     }
 
    public function destroy($id){

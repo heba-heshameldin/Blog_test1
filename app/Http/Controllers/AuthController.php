@@ -13,6 +13,7 @@ class AuthController extends Controller
 
     public function register(RegisterRequest $request)
     {
+        // Vulnerability
         $input = $request->all();
         $input['password'] = bcrypt($request->password);
         User::create($input);

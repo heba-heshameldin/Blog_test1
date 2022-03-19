@@ -5,6 +5,17 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 Post's table
+            </div> 
+             <div class="container" style="width: fit-content; margin-top:5px">
+                @if(session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{session('status')}}
+                </div>
+                @elseif(session('delete'))
+                <div class="alert alert-danger" role="alert">
+                    {{session('delete')}}
+                </div>
+                @endif
             </div>
            
             <!-- /.panel-heading -->
@@ -14,7 +25,7 @@
                     @csrf
                     <div class="form-group">
                         <label>Title</label>
-                        <input class="form-control"  name="title" value="{{$post->title}}">
+                        <input class="form-control"  name="title" value="{{$post->title}}" require>
                         <span style="color: red"> @error('title'){{ $message }}@enderror</span>
 
                     </div>
@@ -24,7 +35,7 @@
                     </div>
                     <div class="form-group">
                         <label>description</label>
-                        <input class="form-control"  name="description" value="{{$post->description}}">
+                        <input class="form-control"  name="description" value="{{$post->description}}" require>
                         <span style="color: red"> @error('description'){{ $message }}@enderror</span>
 
                     </div>

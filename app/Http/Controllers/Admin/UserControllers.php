@@ -36,7 +36,7 @@ class UserControllers extends Controller
     public function destroy($id){
         $users = User::findOrFail($id);
         $users->delete();
-        return redirect()->intended('admin/users')->with('status','Your Data is Deleted');
+        return redirect()->intended('admin/users')->with('status','Used deleted successfully');
 
     }
 }

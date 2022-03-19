@@ -41,7 +41,7 @@
                                 <td>{{$row->address}}</td>
                                 <td>{{$row->date_of_birth}}</td>
                                 <td><a href='user-edit/{{$row->id}}'><i class="fa fa-pencil-square-o" aria-hidden="true" style="  color:green ;margin-left:15px"></i></a></td>
-                                <form action="{{ route('admin.users-delete', $row->id) }}" method="POST">
+                                <form action="user-delete/{{$row->id}}" method="POST">
                                     @method("DELETE")
                                     @csrf
                                     <td><button class="fa fa-trash fa-1.5x" aria-hidden="true" style="color:red; margin-left:20px; border:none ;"></button></td>
