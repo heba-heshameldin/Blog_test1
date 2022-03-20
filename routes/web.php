@@ -53,11 +53,13 @@ Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function () {
     Route::put('post-update/{id}',[PostControllers::class,'update'])->name('admin.post-update');
     Route::delete('post-delete/{id}',[PostControllers::class,'destroy'])->name('admin.post-delete');
     Route::get('comment',[CommentControllers::class,'main'])->name('admin.comment');
-    Route::delete('delete/{id}',[CommentControllers::class,'destroy'])->name('admin.comment-delete');
+    Route::delete('comment-delete/{id}',[CommentControllers::class,'destroy'])->name('admin.comment-delete');
     Route::view("category", 'admin.category')->name('admin.category');
     Route::post('category', [CategoryControllers::class, 'store'])->name('admin.category-add');
     Route::get('category', [CategoryControllers::class, 'main'])->name('admin.category');
-
+    Route::get('category-edit/{id}', [CategoryControllers::class, 'edit'])->name('admin.category-edit');
+    Route::put('category-update/{id}',[CategoryControllers::class,'update'])->name('admin.category-update');
+    Route::delete('category-delete/{id}',[CategoryControllers::class,'destroy'])->name('admin.category-delete');
 
 });
 

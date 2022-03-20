@@ -77,7 +77,7 @@
             @endforeach
         </div>
         {{ $posts->links() }}
-        {{-- {{dd($posts)}} --}}
+        {{-- {{dd($posts->links())}} --}}
 
     </div>
 

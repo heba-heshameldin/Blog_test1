@@ -37,7 +37,7 @@
                         @foreach ($post as $row)
                         <tr>
                                 <td>{{ App\Models\User::find($row->user_id)->name ?? 'No name' }}</td>
-                                <td>{{ App\Models\Category::find($row->category_id)->title }}</td>
+                                <td>{{ App\Models\Category::find($row->category_id)->title ?? 'No Title' }}</td>
                                 <td>{{$row->title}} </td>
                                 <td>{{$row->description}}</td>
                                 <td>{{$row->thumbnail}}</td>

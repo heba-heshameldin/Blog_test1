@@ -1,6 +1,6 @@
 <x-layout>
 
-<div class="container" style="width: fit-content; margin-top:5px">
+<div class="container" style="width: fit-content; margin-top:40px">
                 @if(session('status'))
                 <div class="alert alert-success" role="alert">
                     {{session('status')}}
