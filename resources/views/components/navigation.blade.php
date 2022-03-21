@@ -1,7 +1,7 @@
 <nav style="position: fixed ; width: 100%; height:fit-content; z-index:100"
     class="navbar navbar-expand-sm navbar-light bg-light  ">
     <div class="container-fluid">
-        <a class="navbar-brand" href="javascript:void(0)">B00T2R00T</a>
+        <a class="navbar-brand" href="javascript:void(0)">H3ba-T3ch</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
